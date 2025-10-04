@@ -35,11 +35,11 @@ require_once("connection.php");
             <span>All Equipment</span></a></li>
         </ul>
       </nav>
-
+      <!-- start of the forms -->
       <main main class="flex-1 flex items-center justify-center" >
         <div class=" bg-black/80 shadow-lg rounded-lg p-8 h-[auto] w-[auto] flex flex-row" >
             <div>
-              <form>
+              <form action="borrow_form" method="post">
                 <label class="font -[Roboto] text-[30px] text-white">Borrower Name: </label><br>
                 <input type="text" class="bg-white h-[50px] p-5 text-lg/10 w-[500px] rounded-lg"><br>
 
@@ -68,4 +68,5 @@ require_once("connection.php");
 
 
 <html>
+
 
