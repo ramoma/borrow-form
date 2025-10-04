@@ -53,10 +53,12 @@ require_once("connection.php");
             </div>
             <div>
                 <lable class="font -[Roboto] text-[30px] text-white mx-8">Eqipment List: </label>
-                <table class="bg-white rounded-lg p-8 h-[40rem] w-[40rem] m-7">
+                <table class="bg-white rounded-lg p-8 h-[30rem] w-[40rem] mx-7">
                 </table>
-                <input type="submit" value="Confirm" class="text-white text-lg bg-green-600 hover:bg-green-800 w-[5rem] h-[2rem] rounded-lg">
-                <input type="submit" value="Cancel" class="text-white text-lg bg-red-600 hover:bg-red-800 w-[5rem] h-[2rem] rounded-lg">
+                <div class="float-right mx-8">
+                  <input type="submit" value="Confirm" class="text-white text-lg bg-green-600 hover:bg-green-800 w-[5rem] h-[2rem] rounded-lg">
+                  <input type="submit" value="Cancel" class="text-white text-lg bg-red-600 hover:bg-red-800 w-[5rem] h-[2rem] rounded-lg">
+                </div>
               </form>
             </div>
         </div>
@@ -66,3 +68,4 @@ require_once("connection.php");
 
 
 <html>
+
