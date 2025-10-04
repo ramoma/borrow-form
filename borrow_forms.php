@@ -11,7 +11,7 @@ require_once("connection.php");
 </head>
 <body class="min-h-screen bg-cover bg-center bg-[url('files/Background2.png')]">
      <div class="flex h-full" >
-      <!-- Sidebar  -->
+      <!-- Sidebar im sorry i kind of just copied the thing and now the sizes are messed -->
         <nav class="w-50 bg-black/80 text-green-400 flex flex-col items-center h-screen" style="font-family: 'Poppins', sans-serif;">
         <!-- Logo -->
         <img src="../../files/comsoc_logo-removebg-preview.png" alt="Logo" class="w-42 h-auto" href="#">
@@ -35,28 +35,33 @@ require_once("connection.php");
             <span>All Equipment</span></a></li>
         </ul>
       </nav>
-      <!-- start of the forms -->
+
+      <!-- start of forms -->
       <main main class="flex-1 flex items-center justify-center" >
         <div class=" bg-black/80 shadow-lg rounded-lg p-8 h-[auto] w-[auto] flex flex-row" >
             <div>
-              <form action="borrow_form" method="post">
+              <form action="borrow_forms.php" method="post">
                 <label class="font -[Roboto] text-[30px] text-white">Borrower Name: </label><br>
-                <input type="text" class="bg-white h-[50px] p-5 text-lg/10 w-[500px] rounded-lg"><br>
+                <input type="text" name="Borrower_name"  class="bg-white h-[50px] p-5 text-lg/10 w-[500px] rounded-lg"><br>
 
                 <label class="font -[Roboto] text-[30px] text-white">In-Charge: </label><br>
-                <input type="text" class="bg-white h-[50px] p-5 text-lg/10 w-[500px] rounded-lg"><br>
+                <input type="text" name="In_charge" class="bg-white h-[50px] p-5 text-lg/10 w-[500px] rounded-lg"><br>
 
                 <label class="font -[Roboto] text-[30px] text-white">Scan Barcode: </label><br>
-                <div class="bg-white rounded-lg p-8 h-[25rem] w-[31.25rem]">
-
+                <div class="bg-white rounded-lg p-8 h-[20rem] w-[31.25rem]">
+                  <input type="text" >
                 </div>
             </div>
             <div>
                 <lable class="font -[Roboto] text-[30px] text-white mx-8">Eqipment List: </label>
-                <table class="bg-white rounded-lg p-8 h-[30rem] w-[40rem] mx-7">
-                </table>
+                <div class="bg-white rounded-lg p-8 h-[30rem] w-[40rem] mx-7">
+                  <select class="text-black">
+                    <option>testing</option>
+                    <option>othertesting</option>
+                  </select>
+                </div>
                 <div class="float-right mx-8">
-                  <button type="submit" class="text-white text-lg bg-green-600 hover:bg-green-800 w-[5rem] h-[2rem] rounded-lg">Confirm </button>
+                  <button type="submit" name="submit" class="text-white text-lg bg-green-600 hover:bg-green-800 w-[5rem] h-[2rem] rounded-lg">Confirm </button>
                   <button type="reset"class="text-white text-lg bg-red-600 hover:bg-red-800 w-[5rem] h-[2rem] rounded-lg">Cancel</button>
                 </div>
               </form>
@@ -66,8 +71,28 @@ require_once("connection.php");
 
 </body>
 
+<script></script>
+
+<?php
+
+  $confirm = $_POST["submit"] ?? NULL;
+  $borrower_name = $_POST["Borrower_name"] ?? "";
+  $in_charge     = $_POST["In_charge"] ?? "";
+  if(isset($confirm)){
+    try{ 
+      if(empty($borrower_name) || empty($in_charge)){
+        echo "<script>window.alert('required input');</script>";
+      }
+      else{
+        // include("connection.php");
+        // mysqli_query($dbconn, $query);
+      }
+    }
+    catch(mysqli_exception_sql){
+      echo "what the helly";
+    }
+  }
+  
+?>
 
 <html>
-
-
-
