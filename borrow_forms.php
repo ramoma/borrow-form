@@ -89,10 +89,11 @@ require_once("connection.php");
       }
     }
     catch(mysqli_exception_sql){
-      echo "what the helly";
+      echo "connection error";
     }
   }
   
 ?>
 
 <html>
+
