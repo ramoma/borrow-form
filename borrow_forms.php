@@ -11,7 +11,7 @@ require_once("connection.php");
 </head>
 <body class="min-h-screen bg-cover bg-center bg-[url('files/Background2.png')]">
      <div class="flex h-full" >
-      <!-- Sidebar im sorry i kind of just copied the thing and now the sizes are messed -->
+      <!-- Sidebar  -->
         <nav class="w-50 bg-black/80 text-green-400 flex flex-col items-center h-screen" style="font-family: 'Poppins', sans-serif;">
         <!-- Logo -->
         <img src="../../files/comsoc_logo-removebg-preview.png" alt="Logo" class="w-42 h-auto" href="#">
@@ -63,5 +63,6 @@ require_once("connection.php");
       </main>
 
 </body>
+
 
 <html>
