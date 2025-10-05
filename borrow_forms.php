@@ -49,16 +49,26 @@ require_once("connection.php");
 
                 <label class="font -[Roboto] text-[30px] text-white">Scan Barcode: </label><br>
                 <div class="bg-white rounded-lg p-8 h-[20rem] w-[31.25rem]">
-                  <input type="text" >
+                  <input type="number" name="barcode" class="border-black-100">
                 </div>
             </div>
             <div>
                 <lable class="font -[Roboto] text-[30px] text-white mx-8">Eqipment List: </label>
                 <div class="bg-white rounded-lg p-8 h-[30rem] w-[40rem] mx-7">
-                  <select class="text-black">
-                    <option>testing</option>
-                    <option>othertesting</option>
-                  </select>
+                  <table class="table-auto">
+                    <thead>
+                      <tr>
+                        <th><p class="text-black">equipment name: </p></th>
+                        <th><p class="text-black">Borrower Name: </p></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><h2 class="text-black">something something</h2><td></tr>
+                      
+                    </tbody>
+                    
+
+                  </table>
                 </div>
                 <div class="float-right mx-8">
                   <button type="submit" name="submit" class="text-white text-lg bg-green-600 hover:bg-green-800 w-[5rem] h-[2rem] rounded-lg">Confirm </button>
@@ -75,25 +85,48 @@ require_once("connection.php");
 
 <?php
 
-  $confirm = $_POST["submit"] ?? NULL;
+  $confirm       = $_POST["submit"] ?? NULL;
   $borrower_name = $_POST["Borrower_name"] ?? "";
   $in_charge     = $_POST["In_charge"] ?? "";
+  $barcode       = $_POST["barcode"] ?? 0;
+
   if(isset($confirm)){
-    try{ 
+
+    try{
       if(empty($borrower_name) || empty($in_charge)){
         echo "<script>window.alert('required input');</script>";
       }
       else{
-        // include("connection.php");
-        // mysqli_query($dbconn, $query);
+        $query_compare = "select equipment_id, barcode from equipment";
+        $list = mysqli_query($dbconn, $query_compare);
+
+        if(mysqli_num_rows($list) > 0){
+          $arr = array();
+          while($row = mysqli_fetch_assoc($list)){
+            $arr[$row['barcode']] = $row['equipment_id'];
+            }
+            
+            if($arr[$barcode]){
+                $equipment_id = $arr[$barcode]; //set equipment id for foreign keys
+                //queries
+                $query = "insert into borrow_log (equipment_id,borrow_type, borrower_event_name, in_charge) values('$equipment_id','Personal', '$borrower_name', '$in_charge')";
+                $update_status = "update equipment set status = 'out(borrow)' where equipment_id = '$equipment_id'";
+
+                mysqli_query($dbconn, $query);
+                mysqli_query($dbconn, $update_status);
+            }
+            else{
+              die();
+              echo "<script>window.alert('invalid barcode')</script>";
+            }
+        }
       }
     }
-    catch(mysqli_exception_sql){
-      echo "connection error";
+    catch(mysqli_exceptions_sql){
+      echo "<script>window.alert('an error has occured');</script>";
     }
   }
   
 ?>
 
 <html>
-
